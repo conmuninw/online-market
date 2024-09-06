@@ -1,4 +1,5 @@
 import express from 'express';
+import { default as router } from './router.middleware.js';
 
 const app = express();
 app.use((req, res, next) => {
@@ -8,5 +9,6 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json({ extended: true }));
+router(app);
 app.listen(process.env.PORT, () => { console.log(`Server is running at http://localhost:${process.env.PORT}`) });
 app.use('/img', express.static('img_upload'));
